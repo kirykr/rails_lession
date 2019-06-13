@@ -33,7 +33,21 @@
               %a{href: "#about"} About
             %li
               %a{href: "#contact"} Contact
+          %ur.nav.navbar-nav.pull-right
+            - if !user_signed_in?
+              %li
+                = link_to root_path do
+                  %i.glyphicon.glyphicon-log-in
+                  Login
+            - else
+              %li
+                = link_to destroy_user_session_path, method: :delete do
+                  %i.glyphicon.glyphicon-log-out
+                  Log out
     .container
+      %br/
+      .notice= notice
+      .alert= alert
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
           %button.close{type: "button", data: {dismiss: "alert"} }

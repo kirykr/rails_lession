@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people
@@ -14,7 +15,11 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new
+    if admin_only?
+      @person = Person.new
+    else
+      redirect_to root_path, notice: "You're not authorize to create people."
+    end
   end
 
   # GET /people/1/edit
@@ -70,5 +75,9 @@ class PeopleController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit(:name, :email, :password, :phone, :address)
+    end
+
+    def admin_only?
+      current_user.admin?
     end
 end
