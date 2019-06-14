@@ -6,7 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   belongs_to :role
-  has_many
+  has_many :articles
   validates :email, :role, presence: true
 
+  def admin?
+    role.name == 'admin' 
+  end
 end
