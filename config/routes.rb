@@ -13,4 +13,5 @@ Rails.application.routes.draw do
     resources :articles
     resources :categories, except: :show
   end
+  get '/aboutus' => 'aboutus#index'
 end
