@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   belongs_to :role
-
+  has_many
   validates :email, :role, presence: true
 
 end
