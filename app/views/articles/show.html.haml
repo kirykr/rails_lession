@@ -7,12 +7,25 @@
     Edit
   %h1 Show article
 
-%dl.dl-horizontal
-  %dt Name:
-  %dd= @article.name
-  %dt Body:
-  %dd= @article.body
-  %dt Date:
-  %dd= @article.date
-  %dt Category:
-  %dd= @article.category.name
+-# %dl.dl-horizontal
+-#   %dt Name:
+-#   %dd= @article.name
+-#   %dt Body:
+-#   %dd= @article.body
+-#   %dt Date:
+-#   %dd= @article.date
+-#   %dt Category:
+-#   %dd= @article.category.name
+.container
+  .card.card-info.mt-4
+    .card-title
+      %h3.some{ :style => "color:#065A60" }= @article.name 
+      .card-body.padding
+        %button.label.label-info
+          = @article.category.name
+        %br/
+        %br/
+        %p= @article.body
+        %p.text-danger= "Date: #{@article.date}"
+        
+  

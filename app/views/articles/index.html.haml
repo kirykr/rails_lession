@@ -1,30 +1,21 @@
+
 .page-header
   = link_to new_article_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
     New Article
-  %h1 Listing articles
+  -# %h1 Listing articles
+  %br/
+  .container
 
-
-
-  .table-responsive
-    %table.table.table-striped.table-bordered.table-hover
-      %thead
-        %tr
-          %th Name
-          %th Body
-          %th Date
-          %th Category
-          %th
-          %th
-          %th
-
-      %tbody
-        - @articles.each do |article|
-          %tr
-            %td= article.name
-            %td= article.body
-            %td= article.date
-            %td= article.category.name
-            %td= link_to 'Show', article
-            %td= link_to 'Edit', edit_article_path(article)
-            %td= link_to 'Destroy', article, data: { confirm: 'Are you sure?' }, method: :delete
+    - @articles.each do |article|
+      .card.card-info.mt-4
+        .card-title
+          %h4.some{ :style => "color:#065A60" }= article.name 
+        .card-body.padding
+          %button.label.label-info
+            = article.category.name
+          %p= truncate(article.body, :length => 1000, :omission => '...')
+          =link_to 'Show detail...', article
+      %br/
+      %br/
+      
