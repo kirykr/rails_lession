@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :roles
   resources :articles
   resources :categories do
     resources :articles, only: :index
@@ -8,6 +9,6 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/dashboard' => 'dashboard#index'
-    resources :users, except: [:show]
+    resources :users
   end
 end
