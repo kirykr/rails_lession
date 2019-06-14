@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  resources :people
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, path: 'auth'
+  root to: 'home#index'
+  
+  namespace :admin do
+    get '/dashboard' => 'dashboard#index'
+    resources :users, except: [:show]
+  end
 end
