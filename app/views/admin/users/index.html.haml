@@ -1,0 +1,26 @@
+.page-header
+  = link_to new_admin_user_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New User
+  %h1 Listing Users
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th ID
+        %th Email
+        %th Role
+        %th Show
+        %th Edit
+        %th Delete
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.email
+          %td= user.role.name
+          %td= link_to 'Show', admin_user_path(user)
+          %td= link_to 'Edit', edit_admin_user_path(user)
+          %td= link_to 'Destroy', admin_user_path(user), data: { confirm: 'Are you sure to delete this user?' }, method: :delete
