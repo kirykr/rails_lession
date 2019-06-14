@@ -9,4 +9,7 @@ class User < ApplicationRecord
   has_many :articles
   validates :email, :role, presence: true
 
+  def admin?
+    role.name == 'admin' 
+  end
 end
