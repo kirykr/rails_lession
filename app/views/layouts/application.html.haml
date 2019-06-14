@@ -27,12 +27,16 @@
           = link_to "Khmer News", "#", class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{href: "#"} Home
-            %li
-              %a{href: "#about"} Category
-            %li
-              %a{href: "/auth/sign_in"} Login
+            - @categories.each do |category| 
+               
+              %li.active
+                -# - if category.id == category.articles.try(:category_id)
+                %a{href: category_articles_path(category)}
+                  = category.name
+              
+          %li
+            %a{href: "/auth/sign_in"} Login
+    %br
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
