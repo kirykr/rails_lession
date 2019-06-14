@@ -1,12 +1,4 @@
 .page-header
-  = link_to articles_path, class: 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Back
-  = link_to edit_article_path(@article), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show article
-
 -# %dl.dl-horizontal
 -#   %dt Name:
 -#   %dd= @article.name
@@ -26,6 +18,7 @@
         %br/
         %br/
         %p= @article.body
+        %p.text-danger= "edit: #{@article.user.email}"
         %p.text-danger= "Date: #{@article.date}"
         
   
